@@ -1,12 +1,5 @@
-#ifdef WIN32
-#include "Python/Python.h"
-#include <windows.h>
-#include "GL/gl.h"
-#include "GL/glext.h"
-#else
 #include "Python.h"
 #include "GL/gl.h"
-#endif
 
 
 
@@ -38,6 +31,7 @@ int gameFunc();
 int startMenu();
 
 int gameInit(int argc, char * argv[]){
+ cout << "gameInit started" << endl;
  strcpy(aGame->player1->name,"Karl Koch");
  strcpy(aGame->player2->name,"Adam Weisshaupt");
  aGame->player1->moveLeft=SDLK_a;
@@ -64,11 +58,13 @@ int gameInit(int argc, char * argv[]){
  }
  aGame->player1->LoadAI();
  aGame->player2->LoadAI();
+ cout << "gameInit finished" << endl;
  return(0);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int startScreen(){
+ cout << "startScreen started" << endl; 
  glMatrixMode(GL_PROJECTION);
  glLoadIdentity();
  glOrtho(0.0,800.0,-600.0,0.0,-10.0,10.0);
@@ -87,11 +83,13 @@ int startScreen(){
  //unload the startscreen
  SDL_FreeSurface(Start);
  nextFunction = &startMenu;
+ cout << "startScreen finished" << endl;
  return(0);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 int startMenu(){
+ cout << "startMenu started" << endl;
  SDL_Event dummyEvent;
  SDL_Event * dumpEvent = &dummyEvent;
  while(SDL_PollEvent(dumpEvent)){
@@ -152,6 +150,7 @@ int startMenu(){
  delete(startButton);
  delete(quitButton);
  delete(optionsButton);
+ cout << "startMenu finished" << endl;
  return(0);
 }
 
@@ -435,6 +434,7 @@ int gameOptionsFunc(){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 int gameFunc(){
+cout << "gameFunc started" << endl;
 SDL_Event dummyEvent;
 SDL_Event * dumpEvent = &dummyEvent;
 while(SDL_PollEvent(dumpEvent)){
@@ -453,6 +453,7 @@ SDL_Surface * BallPic;
 SDL_ShowCursor(SDL_DISABLE);
 
 //initialize OpenGL
+cout << "Initializing OpenGL" << endl;
 glMatrixMode(GL_PROJECTION);
 glLoadIdentity();
 glOrtho(0.0,800.0,-600.0,0.0,-10.0,10.0);
@@ -463,18 +464,20 @@ glAlphaFunc(GL_GREATER,0);
 //glEnable(GL_DEPTH_TEST);
 glClearColor(0.0,0.0,0.0,0.0);
 glColor4f(1.0,1.0,1.0,1.0);
+cout << "GL init complete" << endl;
 
-
+cout << "Loading Bogo Images" << endl;
 Bogol1 = IMG_Load("dat/Bogol1.png");
 Bogol2 = IMG_Load("dat/Bogol2.png");
 BogoR1 = IMG_Load("dat/BogoR1.png");
 BogoR2 = IMG_Load("dat/BogoR2.png");
 BallPic = IMG_Load("dat/Ball.png");
-cerr << "Images Loaded" << endl;
+cout << "Images Loaded" << endl;
 
 int start=0;
 
 
+cout << "Setting up game and player structures" << endl;
 aGame->player1->skin[0][0] = Bogol1;
 aGame->player1->skin[0][1] = Bogol2;
 aGame->player1->skin[1][0] = BogoR1;
@@ -506,6 +509,8 @@ aGame->theBall->start=1;
 aGame->player1->InitArea0();
 aGame->player2->InitArea1();
 aGame->theBall->InitBall(0);
+cout << "Game and player setup complete" << endl;
+
 
 Uint8 * KeysPointer;
 char DummyString[2];
@@ -513,7 +518,9 @@ char DummyString[2];
 DummyString[1]='\0';
 
 //rewrite InitScoreGui and PrintScoreGui so that InitScoreGui can be called from the constructor of cGame one day....
+cout << "InitScoreGui" << endl;
 aGame->InitScoreGui();
+cout << "Score UI init complete" << endl;
 while ((aGame->finished!=1) && (aGame->finished!=-1)) {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -525,6 +532,7 @@ while ((aGame->finished!=1) && (aGame->finished!=-1)) {
 	KeysPointer = SDL_GetKeyState(0);
 
 //the game mechanics 
+	cout << "Starting Game Mechanics" << endl;
 	aGame->ProcessQuitPressed(KeysPointer);
 	aGame->ProcessResSwitch(KeysPointer);
 	aGame->ProcessStart(KeysPointer);
@@ -545,26 +553,29 @@ while ((aGame->finished!=1) && (aGame->finished!=-1)) {
 	aGame->theBall->CollideNet();
 	
 //game mechanics finished
+cout << "Game mechanics finished" << endl;
 
 //game graphics
+cout << "Starting Game graphics" << endl;
 	
 	aGame->DrawGameBackground();
 
-	
+cout << "Draw players" << endl;	
 	aGame->player1->Draw();
 	aGame->player2->Draw();
 	
-
+cout << "Draw ball" << endl;
 	aGame->theBall->Draw();
 
-
+cout << "Draw net" << endl;
 	//blit the .net (hohoho)
 	aGame->DrawNet();
-
-	aGame->PrintScoreGui();
-
+cout << "Draw gui" << endl;
+//	aGame->PrintScoreGui();
+cout << "Swap" << endl;
 	SDL_GL_SwapBuffers();
 //graphics finished
+cout << "Game Graphics finished" << endl;
 
 //game rules
 	aGame -> CheckScore();
