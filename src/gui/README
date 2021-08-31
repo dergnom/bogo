@@ -1,0 +1,1 @@
+BUG: Die Benutzung der Funktionen loadFont (loadFontHighlight) der Klasse gui sind Problematisch, da sie möglicherweise fremde Speicherbereiche korrumpiert, wenn vor ihrem aufruf keine Schrift geladen worden ist. Sie sollte nur verwendet werde, wenn die gui Klasse mit dem Konstruktor erstellt wurde, der gleichzeitig die verwendeten Schriften initialisiert. 

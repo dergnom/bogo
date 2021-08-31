@@ -1,0 +1,35 @@
+def aifunc(Player,otherPlayer,Ball,Container):
+	xPos=Player[0]
+	xBall=Ball[0]
+	r=0
+	l=0
+	j=0
+	
+	#print xPos
+	if xPos > 400:
+		
+		if xBall < 400:
+			if xPos < 700:
+				r=1 
+			elif xPos > 710:
+				l=1
+		elif xBall > 400:
+			if xPos > xBall+5:
+				l=1
+			elif xPos < xBall-5:
+				r=1
+	elif xPos < 400:
+		
+		if xBall > 400:
+			if xPos > 100:
+				l=1
+			elif xPos < 90:
+				r=1
+		elif xBall < 400:
+			if xPos > xBall+5:
+				l=1
+			elif xPos < xBall-5:
+				r=1
+	
+	back=(r,l,j,Container)
+	return(back)

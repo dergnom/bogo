@@ -1,0 +1,4 @@
+def AIFunc():
+	print("YodelDiHo")
+	r=22
+	return(r)

@@ -1,0 +1,26 @@
+#ifndef fonth
+#define fonth
+
+#ifdef WIN32
+#include "Python/Python.h"
+#include <windows.h>
+#include "GL/gl.h"
+#include "GL/glext.h"
+#else
+#include "Python.h"
+#include "GL/gl.h"
+#endif
+
+#include <iostream>
+
+using namespace std;
+
+
+
+//GLubyte rasters;
+//GLuint fontOffset;
+void makeRasterFont(void);
+void printString(char *s);
+void display(void);
+
+#endif
