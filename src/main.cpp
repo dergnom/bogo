@@ -571,7 +571,7 @@ cout << "Draw net" << endl;
 	//blit the .net (hohoho)
 	aGame->DrawNet();
 cout << "Draw gui" << endl;
-//	aGame->PrintScoreGui();
+	aGame->PrintScoreGui();
 cout << "Swap" << endl;
 	SDL_GL_SwapBuffers();
 //graphics finished

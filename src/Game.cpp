@@ -400,9 +400,11 @@ int cGame::InitScoreGui(){
 int cGame::PrintScoreGui(){
 	
 	//paint the game stats above each player
+cout << "LabelPoints" << endl;
 	LabelPoints->Print();
+cout << "LabelPlays" << endl;
 	LabelPlays->Print();
-	
+cout << "if clause" << endl;	
 	if (player1->area==0) {
 		Player1Name->leftBorder=115.0;
 		Player1Name->top=-40.0;
@@ -426,13 +428,23 @@ int cGame::PrintScoreGui(){
 		sprintf(LabelPointsRight->text,"%i",player1->points);
 		sprintf(LabelPlaysRight->text,"%i",player1->plays);
 	}//game stats completed
+
+cout << "Player1Name" << endl;
 	
 	Player1Name->Print();
+cout << "Player2Name" << endl;
 	Player2Name->Print();
+cout << "LabelPoints" << endl;
 	LabelPointsLeft->Print();
+cout << "LabelPlays" << endl;
 	LabelPlaysLeft->Print();
+cout << "LabelPoints" << endl;
 	LabelPointsRight->Print();
+cout << "LabelPlays" << endl;
 	LabelPlaysRight->Print();	
+
+cout << "Gui finished" << endl;
+return(0);
 }
 
 int cGame::DeleteScoreGui(){
