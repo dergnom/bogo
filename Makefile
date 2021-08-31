@@ -3,8 +3,8 @@ WINDOWS_CFLAGS=-O3 -I/usr/local/cross-tools/i386-mingw32msvc/include/SDL -I/msdo
 WINDOWS_LIBS= -L/usr/local/cross-tools/i386-mingw32msvc/lib -L/usr/wine/c/windows/system -lpython23 -lmingw32 -lSDLmain -lSDL -mwindows -lopengl32 -lSDL_image
 
 LINUX_CC=g++
-LINUX_LIBS= -lSDL -lSDL_image -lpython2.4 -lGL
-LINUX_CFLAGS=-O3 -I./src/gui/include -I./include -I/usr/include/python2.4
+LINUX_LIBS= -lSDL -lSDL_image -lpython3.8 -lGL
+LINUX_CFLAGS=-O3 -I./src/gui/include -I./include -I/usr/include/python3.8
 
 clean:
 	/bin/rm ./src/*.o

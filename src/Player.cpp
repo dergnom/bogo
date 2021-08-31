@@ -69,7 +69,7 @@ Py_INCREF(pAIContainer);
 
 void cPlayer::LoadAI(){
 if(cpuControlled==1){
-	PyObject * pModuleName = PyString_FromString(pAIModule);
+	PyObject * pModuleName = PyUnicode_FromString(pAIModule);
 	PyObject * pModule;
 	if(! (pModule = PyImport_Import(pModuleName)) ){
 				cerr << "Couldn't load " << pAIModule << endl;

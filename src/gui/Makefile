@@ -1,6 +1,6 @@
 LINUX_CC=g++
-LINUX_LIBS=-lSDL -lSDL_image -lGL -lpython2.4
-LINUX_CFLAGS=-gnatm1 -O3 -I./include -I/usr/include/python2.4
+LINUX_LIBS=-lSDL -lSDL_image -lGL -lpython3.8
+LINUX_CFLAGS=-O3 -I./include -I/usr/include/python3.8
 
 gui.a: ./src/gui.cpp ./src/gui_items.cpp
 	$(LINUX_CC) $(LINUX_CFLAGS) -c -g ./src/gui.cpp ./src/gui_items.cpp
